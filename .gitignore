@@ -178,4 +178,4 @@ cython_debug/
 *.pdf
 *.pth
 /dl/data/
-*/data/
+**/data/
