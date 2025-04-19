@@ -177,3 +177,5 @@ cython_debug/
 *.zip
 *.pdf
 *.pth
+/dl/data/
+*/data/
