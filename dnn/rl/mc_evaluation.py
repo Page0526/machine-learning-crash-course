@@ -15,6 +15,7 @@ def MonteCarloStateValueFunction(env, stateNumber, episodes, discountRate):
     numberVisitsEveryState = np.zeros(stateNumber)
     valueFunctionEstimate = np.zeros(stateNumber)
 
+    # loop through all episodes
     for _ in range(episodes):
         visitedStateInEpisode = []
         returnsInEpisode = []
@@ -22,8 +23,8 @@ def MonteCarloStateValueFunction(env, stateNumber, episodes, discountRate):
         (currentState, prob) = env.reset()
         visitedStateInEpisode.append(currentState)
 
+        # not end until reach terminalState
         while True:
-            # not end until reach terminalState
             randomAction = env.action_space.sample()
 
             (currentState, currentReward, terminalState, _, _) = env.step(randomAction)
