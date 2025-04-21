@@ -30,7 +30,8 @@ def GLIEMonteCarlo(env, numEpisodes, discountRate, initialEpsilon):
         visitsInEachEpisodes.append(currentState)
 
         # not end until reach terminalState
-        while True:
+        terminalState = False
+        while not terminalState:
             # e-greedy
             action = selectAction(currentState, i)
             actionInSpace.append(action)
@@ -40,8 +41,6 @@ def GLIEMonteCarlo(env, numEpisodes, discountRate, initialEpsilon):
 
             if not terminalState:
                 visitsInEachEpisodes.append(currentState)
-            else:
-                break
 
         numVisited = len(visitsInEachEpisodes)
         Gt = 0
@@ -66,7 +65,7 @@ def GLIEMonteCarlo(env, numEpisodes, discountRate, initialEpsilon):
     
     for idx in range(stateNumber):
         # at each state, select the policy - take action that maximize q-value
-        finalPolicy[idx] = np.random.choice(np.where(actionValueMatrixEstimate[idx] == np.max(actionValueMatrixEstimate[idx]))[0])
+        finalPolicy[idx] = np.random.choice(np.where(actionValueMatrixEstimate[idx,:] == np.max(actionValueMatrixEstimate[idx,:]))[0])
 
     return finalPolicy, actionValueMatrixEstimate
 
